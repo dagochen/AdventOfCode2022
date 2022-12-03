@@ -1,27 +1,24 @@
-﻿namespace AdventOfCode;
+﻿using System.Diagnostics;
+
+namespace AdventOfCode;
 
 public class Day3
 {
     private readonly string Input;
 
-    public List<Tuple<char[], char[]>> Rucksacks { get; } = new List<Tuple<char[], char[]>>();
+    public List<Rucksack> Rucksacks { get; } = new();
+    public List<GroupOfElves> Groups { get; } = new();
     public int SumOfPriorities => CalculateSum();
 
-    public object GroupSum => CalculateGroupSum();
+    public object GroupBadgeSum => CalculateGroupSum();
 
     private int CalculateGroupSum()
     {
         var sum = 0;
-        for (int i = 1; i <= Rucksacks.Count / 3; i++)
+        foreach (var group in Groups)
         {
-            var groupRucksacks = Rucksacks.Take(i * 3).Skip((i - 1) * 3).ToList();
-            var rucksack1 = groupRucksacks[0].Item1.Union(groupRucksacks[0].Item2);
-            var rucksack2 = groupRucksacks[1].Item1.Union(groupRucksacks[1].Item2);
-            var rucksack3 = groupRucksacks[2].Item1.Union(groupRucksacks[2].Item2);
-
-
-            var groupBadge = (rucksack1.Intersect(rucksack2)).Intersect(rucksack3).First();
-            sum += ValueOf(groupBadge);
+            var groupBadge = group.FindIntersectingBadge();
+            sum += PriorityOf(groupBadge);
         }
         return sum;
     }
@@ -32,20 +29,20 @@ public class Day3
         foreach (var rucksack in Rucksacks)
         {
             var wrongItem = FindWrongItem(rucksack);
-            sum += ValueOf(wrongItem);
+            sum += PriorityOf(wrongItem);
         }
         return sum;
     }
 
-    public static int ValueOf(char wrongItem)
+    public static int PriorityOf(char item)
     {
-        if (wrongItem >= 'A' && wrongItem <= 'Z')
-            return wrongItem - 64 + 26;
+        if (item >= 'A' && item <= 'Z')
+            return item - 64 + 26;
 
-        if (wrongItem >= 'a' && wrongItem <= 'z')
-            return wrongItem - 96;
-        
-        return -1;
+        if (item >= 'a' && item <= 'z')
+            return item - 96;
+
+        throw new UnreachableException();
     }
 
     public Day3(string input)
@@ -53,24 +50,56 @@ public class Day3
         this.Input = input;
     }
 
-    public char FindWrongItem(Tuple<char[], char[]> rucksack)
+    public static char FindWrongItem(Rucksack rucksack)
     {
-        var intersection = rucksack.Item1.Distinct().Intersect(rucksack.Item2.Distinct());
+        var intersection = rucksack.FirstCompartment.Distinct().Intersect(rucksack.SecondCompartment.Distinct());
         return intersection.First();
     }
 
-    public Tuple<char[], char[]> GetRucksack(int index)
+    public Rucksack GetRucksack(int index)
     {
         return Rucksacks[index];
     }
 
     public void Process()
     {
+        var group = new GroupOfElves();
         foreach (var line in Input.Split(new string[] { Environment.NewLine }, StringSplitOptions.TrimEntries))
         {
-            var first = line.Substring(0, line.Length / 2).ToCharArray();
-            var second = line.Substring(line.Length / 2).ToCharArray();
-            Rucksacks.Add(Tuple.Create(first, second));
+            var rucksack = new Rucksack(line.ToCharArray());
+            Rucksacks.Add(rucksack);
+            group.AddRucksack(rucksack);
+            if (group.GroupIsFull)
+            {
+                Groups.Add(group);
+                group = new GroupOfElves();
+            }
         }
     }
+}
+
+public class Rucksack
+{
+    public char[] Content { get; set; }
+    public char[] FirstCompartment => Content.Take(Content.Length / 2).ToArray();
+    public char[] SecondCompartment => Content.TakeLast(Content.Length / 2).ToArray();
+
+    public Rucksack(char[] content)
+    {
+        this.Content = content;
+    }
+}
+
+public class GroupOfElves
+{
+    private const int maxGroupSize = 3;
+    private readonly List<Rucksack> rucksacks = new();
+    public IReadOnlyList<Rucksack> Rucksacks => rucksacks.AsReadOnly<Rucksack>();
+
+    public void AddRucksack(Rucksack rucksack) => this.rucksacks.Add(rucksack);
+
+    internal char FindIntersectingBadge()
+        => (rucksacks[0].Content.Intersect(rucksacks[1].Content)).Intersect(rucksacks[2].Content).First();
+
+    public bool GroupIsFull => this.rucksacks.Count == maxGroupSize;
 }

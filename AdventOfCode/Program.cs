@@ -15,6 +15,6 @@ Console.WriteLine(day2.Score);
 var day3 = new Day3(Input.Day3);
 day3.Process();
 Console.WriteLine(day3.SumOfPriorities);
-Console.WriteLine(day3.GroupSum);
+Console.WriteLine(day3.GroupBadgeSum);
 
 Console.Read();

@@ -21,10 +21,10 @@ namespace AdventOfCode.Test
         [Fact]
         public void TestValueOfChar()
         {
-            Day3.ValueOf('a').ShouldBe(1);
-            Day3.ValueOf('z').ShouldBe(26);
-            Day3.ValueOf('A').ShouldBe(27);
-            Day3.ValueOf('Z').ShouldBe(52);
+            Day3.PriorityOf('a').ShouldBe(1);
+            Day3.PriorityOf('z').ShouldBe(26);
+            Day3.PriorityOf('A').ShouldBe(27);
+            Day3.PriorityOf('Z').ShouldBe(52);
         }
 
         [Fact]
@@ -45,9 +45,9 @@ namespace AdventOfCode.Test
         }
 
         [Fact]
-        public void TestGroupPrioValue()
+        public void TestGroupBadgeSum()
         {
-            Day3.GroupSum.ShouldBe(70);
+            Day3.GroupBadgeSum.ShouldBe(70);
         }
     }
 }
