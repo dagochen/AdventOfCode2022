@@ -13,5 +13,15 @@ namespace AdventOfCode.Test
             day2.Score.ShouldBe(15);
             day2.ScorePartTwo.ShouldBe(12);
         }
+
+        [Fact]
+        public void Day2DumbVersionTestDataWorking()
+        {
+            var day2 = new Day2Minimal(Input.Day2Test);
+            day2.Process();
+
+            day2.Score.ShouldBe(15);
+            day2.ScorePartTwo.ShouldBe(12);
+        }
     }
 }
