@@ -15,7 +15,6 @@ namespace AdventOfCode.Test
             day1.MaxCalories.ShouldBe(24000);
             day1.ElfWithMaxCalories.ShouldBe(4);
             day1.TopThreeElves.ShouldBe(45000);
-
         }
     }
 }

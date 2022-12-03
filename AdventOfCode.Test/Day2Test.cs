@@ -12,7 +12,6 @@ namespace AdventOfCode.Test
 
             day2.Score.ShouldBe(15);
             day2.ScorePartTwo.ShouldBe(12);
-           
         }
     }
 }
