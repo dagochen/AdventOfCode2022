@@ -11,12 +11,11 @@ public class Day4
 
     public void Process()
     {
-        var group = new GroupOfElves();
         foreach (var line in Input.Split(new string[] { Environment.NewLine }, StringSplitOptions.TrimEntries))
         {
-            (string first, string second) = line.Split(',') switch { var a => (a[0], a[1]) };
-            (int firstMin, int firstMax) = first.Split('-') switch { var a => (int.Parse(a[0]), int.Parse(a[1])) };
-            (int secondMin, int secondMax) = second.Split('-') switch { var a => (int.Parse(a[0]), int.Parse(a[1])) };
+            (string first, string second) = SeperateFirstFromSecondSection(line);
+            (int firstMin, int firstMax) = CalculateLimitsOfSectionIntervall(first);
+            (int secondMin, int secondMax) = CalculateLimitsOfSectionIntervall(second);
 
             var pair = new PairOfElves(firstMin, firstMax, secondMin, secondMax);
 
@@ -26,6 +25,16 @@ public class Day4
             if (pair.IsPartialOverlap)
                 PartialOverlapCount++;
         }
+    }
+
+    private static (int, int) CalculateLimitsOfSectionIntervall(string section)
+    {
+        return section.Split('-') switch { var a => (int.Parse(a[0]), int.Parse(a[1])) };
+    }
+
+    private static (string, string) SeperateFirstFromSecondSection(string line)
+    {
+        return line.Split(',') switch { var a => (a[0], a[1]) };
     }
 }
 
