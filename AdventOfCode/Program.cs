@@ -19,7 +19,7 @@ Console.WriteLine(day3.GroupBadgeSum);
 
 var day4 = new Day4(Input.Day4);
 day4.Process();
-Console.WriteLine(day4.FullContainCount);
+Console.WriteLine(day4.FullOverlapCount);
 Console.WriteLine(day4.PartialOverlapCount);
 
 

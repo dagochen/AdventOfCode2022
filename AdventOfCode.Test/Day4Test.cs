@@ -14,7 +14,7 @@ namespace AdventOfCode.Test
         [Fact]
         public void Day4TestDataWorking()
         {
-            Day4.FullContainCount.ShouldBe(2);
+            Day4.FullOverlapCount.ShouldBe(2);
             Day4.PartialOverlapCount.ShouldBe(4);
         }
     }

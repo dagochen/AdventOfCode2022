@@ -1,18 +1,12 @@
-﻿using System.Diagnostics;
-using System.Runtime.ExceptionServices;
-
-namespace AdventOfCode;
+﻿namespace AdventOfCode;
 
 public class Day4
 {
     private readonly string Input;
 
-    public Day4(string input)
-    {
-        this.Input = input;
-    }
+    public Day4(string input) => this.Input = input;
 
-    public int FullContainCount { get; set; } = 0;
+    public int FullOverlapCount { get; set; } = 0;
     public int PartialOverlapCount { get; set; } = 0;
 
     public void Process()
@@ -24,13 +18,32 @@ public class Day4
             (int firstMin, int firstMax) = first.Split('-') switch { var a => (int.Parse(a[0]), int.Parse(a[1])) };
             (int secondMin, int secondMax) = second.Split('-') switch { var a => (int.Parse(a[0]), int.Parse(a[1])) };
 
-            if ((firstMin >= secondMin && firstMax <= secondMax) || (secondMin >= firstMin && secondMax <= firstMax))
-                FullContainCount++;
+            var pair = new PairOfElves(firstMin, firstMax, secondMin, secondMax);
 
-            if ((firstMin >= secondMin && firstMin <= secondMax) || (firstMax >= secondMin && firstMax <= secondMax))
-                PartialOverlapCount++;
-            else if ((secondMin >= firstMin && secondMin <= firstMax) || (secondMax >= firstMin && secondMax <= firstMax))
+            if (pair.IsFullOverlap)
+                FullOverlapCount++;
+
+            if (pair.IsPartialOverlap)
                 PartialOverlapCount++;
         }
     }
+}
+
+public class PairOfElves
+{
+    public PairOfElves(int firstMin, int firstMax, int secondMin, int secondMax)
+    {
+        this.First = Enumerable.Range(firstMin, (firstMax - firstMin + 1)).ToHashSet();
+        this.Second = Enumerable.Range(secondMin, (secondMax - secondMin + 1)).ToHashSet();
+    }
+    public ISet<int> First { get; set; }
+    public ISet<int> Second { get; set; }
+
+    public bool IsFullOverlap => (First.Min() >= Second.Min() && First.Max() <= Second.Max())
+                                 || (Second.Min() >= First.Min() && Second.Max() <= First.Max());
+
+    public bool IsPartialOverlap => (First.Min() >= Second.Min() && First.Min() <= Second.Max())
+                               || (First.Max() >= Second.Min() && First.Max() <= Second.Max())
+                               || ((Second.Min() >= First.Min() && Second.Min() <= First.Max())
+                               || (Second.Max() >= First.Min() && Second.Max() <= First.Max()));
 }
