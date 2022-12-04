@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode", "AdventOfCode\AdventOfCode.csproj", "{35AA1F7C-C78F-4342-B04B-57F2B1CF8C4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode", "AdventOfCode\AdventOfCode.csproj", "{35AA1F7C-C78F-4342-B04B-57F2B1CF8C4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode.Test", "AdventOfCode.Test\AdventOfCode.Test.csproj", "{6F94F65E-4168-425B-8729-D82A6735DFB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdventOfCode.Test", "AdventOfCode.Test\AdventOfCode.Test.csproj", "{6F94F65E-4168-425B-8729-D82A6735DFB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode.Benchmark", "AdventOfCode.Benchmark\AdventOfCode.Benchmark.csproj", "{D9C3CE8E-3D0E-4BB9-9A99-EB6800505ABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{6F94F65E-4168-425B-8729-D82A6735DFB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F94F65E-4168-425B-8729-D82A6735DFB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F94F65E-4168-425B-8729-D82A6735DFB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9C3CE8E-3D0E-4BB9-9A99-EB6800505ABD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9C3CE8E-3D0E-4BB9-9A99-EB6800505ABD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9C3CE8E-3D0E-4BB9-9A99-EB6800505ABD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9C3CE8E-3D0E-4BB9-9A99-EB6800505ABD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
