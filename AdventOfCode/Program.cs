@@ -17,4 +17,10 @@ day3.Process();
 Console.WriteLine(day3.SumOfPriorities);
 Console.WriteLine(day3.GroupBadgeSum);
 
+var day4 = new Day4(Input.Day4);
+day4.Process();
+Console.WriteLine(day4.FullContainCount);
+Console.WriteLine(day4.PartialOverlapCount);
+
+
 Console.Read();
