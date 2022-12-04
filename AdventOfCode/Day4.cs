@@ -39,7 +39,7 @@ public class PairOfElves
     public ISet<int> First { get; set; }
     public ISet<int> Second { get; set; }
 
-    public bool IsFullOverlap => First.IsProperSubsetOf(Second) || Second.IsProperSubsetOf(First);
+    public bool IsFullOverlap => First.IsSubsetOf(Second) || Second.IsSubsetOf(First);
 
     public bool IsPartialOverlap => First.Overlaps(Second);
 }
