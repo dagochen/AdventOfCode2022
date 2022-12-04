@@ -39,11 +39,7 @@ public class PairOfElves
     public ISet<int> First { get; set; }
     public ISet<int> Second { get; set; }
 
-    public bool IsFullOverlap => (First.Min() >= Second.Min() && First.Max() <= Second.Max())
-                                 || (Second.Min() >= First.Min() && Second.Max() <= First.Max());
+    public bool IsFullOverlap => First.IsProperSubsetOf(Second) || Second.IsProperSubsetOf(First);
 
-    public bool IsPartialOverlap => (First.Min() >= Second.Min() && First.Min() <= Second.Max())
-                               || (First.Max() >= Second.Min() && First.Max() <= Second.Max())
-                               || ((Second.Min() >= First.Min() && Second.Min() <= First.Max())
-                               || (Second.Max() >= First.Min() && Second.Max() <= First.Max()));
+    public bool IsPartialOverlap => First.Overlaps(Second);
 }
