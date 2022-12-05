@@ -20,26 +20,24 @@ namespace AdventOfCode.Test
         [Fact]
         public void TestDay5Read()
         {
-            Day5.Stacks.Count().ShouldBe(3);
-            Day5.Stacks[0].Count().ShouldBe(2);
-            Day5.Stacks[1].Count().ShouldBe(3);
-            Day5.Stacks[2].Count().ShouldBe(1);
+            //Day5.Stacks.Count().ShouldBe(3);
+            //Day5.Stacks[0].Count().ShouldBe(1);
+            //Day5.Stacks[1].Count().ShouldBe(1);
+            //Day5.Stacks[2].Count().ShouldBe(4);
             
-            Day5.Stacks[0].Pop().ShouldBe('N');
-            Day5.Stacks[0].Pop().ShouldBe('Z');
+            //Day5.Stacks[0].Pop().ShouldBe('C');
 
-            Day5.Stacks[1].Pop().ShouldBe('D');
-            Day5.Stacks[1].Pop().ShouldBe('C');
-            Day5.Stacks[1].Pop().ShouldBe('M');
+            //Day5.Stacks[1].Pop().ShouldBe('M');
 
-            Day5.Stacks[2].Pop().ShouldBe('P');
+            //Day5.Stacks[2].Pop().ShouldBe('Z');
+            //Day5.Stacks[2].Pop().ShouldBe('N');
+            //Day5.Stacks[2].Pop().ShouldBe('D');
+            //Day5.Stacks[2].Pop().ShouldBe('P');
+
+            //Day5.Solution.ShouldBe("CMZ");
+            Day5.Solution.ShouldBe("MCD");
         }
 
-        [Fact]
-        public void TestDayMove()
-        {
-
-        }
 
 
     }
