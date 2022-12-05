@@ -22,5 +22,9 @@ day4.Process();
 Console.WriteLine(day4.FullOverlapCount);
 Console.WriteLine(day4.PartialOverlapCount);
 
+var day5 = new Day5(Input.Day5Test);
+day5.Process();
+
+
 
 Console.Read();
