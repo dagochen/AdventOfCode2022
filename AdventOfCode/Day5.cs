@@ -6,27 +6,49 @@ namespace AdventOfCode
     {
         public string Input { get; }
         public List<Stack<char>> Stacks { get; set; } = new();
+        public List<Instruction> Instructions { get; set; } = new();
         public string Solution { get; private set; } = "";
 
         public Day5(string input)
         {
             this.Input = input;
         }
-
-      
     
         public void Process()
+        {
+            ReadInput();
+            Part1Crane();
+            CalculateSolution();
+        }
+
+        public void Part1Crane()
+        {
+            foreach (var instruction in Instructions)
+            {
+                MoveFromTo(instruction.Count, instruction.From, instruction.To);
+            }
+        }
+
+        public void Part2Crane()
+        {
+            foreach (var instruction in Instructions)
+            {
+                MoveFromToNewCrane(instruction.Count, instruction.From, instruction.To);
+            }
+        }
+
+        public void ReadInput()
         {
             var dict = new Dictionary<int, string>();
             var index = 0;
             var isStackRead = true;
             var regex = new Regex("\\d+");
-            
+
             foreach (var line in Input.Split(new string[] { Environment.NewLine }, StringSplitOptions.None))
             {
                 if (line.Trim().StartsWith("1"))
                 {
-                    var anzahl = int.Parse(line.Substring(line.Length-2));
+                    var anzahl = int.Parse(line.Substring(line.Length - 2));
                     for (int i = 0; i < anzahl; i++)
                         Stacks.Add(new());
                     isStackRead = false;
@@ -38,12 +60,15 @@ namespace AdventOfCode
                 if (line.Trim().StartsWith("move"))
                 {
                     var result = regex.Matches(line);
-                    //MoveFromTo(int.Parse(result[0].Value), int.Parse(result[1].Value), int.Parse(result[2].Value));
-                    MoveFromToNewCrane(int.Parse(result[0].Value), int.Parse(result[1].Value), int.Parse(result[2].Value));
+                    Instructions.Add(new(int.Parse(result[0].Value), int.Parse(result[1].Value), int.Parse(result[2].Value)));
                 }
 
                 index++;
             }
+        }
+
+        public void CalculateSolution()
+        {
             foreach (var stack in Stacks)
             {
                 this.Solution = String.Concat(this.Solution, stack.Peek());
@@ -85,5 +110,19 @@ namespace AdventOfCode
                 Stacks[to-1].Push(move);
             }
         }
+    }
+
+    public class Instruction
+    {
+        public Instruction(int count, int from, int to)
+        {
+            this.Count = count;
+            this.From = from;
+            this.To = to;
+        }
+
+        public int Count { get; set; } = 0;
+        public int From { get; set; } = 0;
+        public int To { get; set; } = 0;
     }
 }
