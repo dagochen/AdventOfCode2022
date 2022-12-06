@@ -26,6 +26,10 @@ var day5 = new Day5(Input.Day5);
 day5.Process();
 Console.WriteLine(day5.Solution);
 
-
+var day6 = new Day6(Input.Day6);
+day6.Part1();
+Console.WriteLine(day6.MarkerPosition);
+day6.Part2();
+Console.WriteLine(day6.MessagePosition);
 
 Console.Read();
