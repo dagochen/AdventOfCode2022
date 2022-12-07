@@ -34,7 +34,7 @@ Console.WriteLine(day6.MessagePosition);
 
 var day7 = new Day7(Input.Day7);
 day7.ProcessPart1();
-Console.WriteLine(day7.Part1);
+Console.WriteLine("Day 7 P1: " + day7.Part1);
 
 day7.ProcessPart2();
 Console.WriteLine(day7.Part2);

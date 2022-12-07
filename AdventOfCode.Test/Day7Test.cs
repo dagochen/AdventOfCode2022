@@ -15,17 +15,20 @@ namespace AdventOfCode.Test
         public void TestPart1()
         {
             Day.ProcessPart1();
-            Day.SumSizeFor("e").ShouldBe(584);
-            Day.SumSizeFor("a").ShouldBe(94853);
-            Day.SumSizeFor("d").ShouldBe(24933642);
-            Day.SumSizeFor("/").ShouldBe(48381165);
+            Day.Directories["//a/e"].Size.ShouldBe(584);
+            Day.Directories["//a"].Size.ShouldBe(94853);
+            Day.Directories["//d"].Size.ShouldBe(24933642);
+            Day.Directories["/"].Size.ShouldBe(48381165);
+            Day.Part1.ShouldBe(95437);
         }
 
         [Fact]
         public void TestPart2()
         {
+            Day.ProcessPart1();
+
             Day.ProcessPart2();
-            Day.Part2.ShouldBe(2);
+            Day.Part2.ShouldBe(24933642);
         }
     }
 }
