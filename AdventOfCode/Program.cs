@@ -32,4 +32,11 @@ Console.WriteLine(day6.MarkerPosition);
 day6.Part2();
 Console.WriteLine(day6.MessagePosition);
 
+var day7 = new Day7(Input.Day7);
+day7.ProcessPart1();
+Console.WriteLine(day7.Part1);
+
+day7.ProcessPart2();
+Console.WriteLine(day7.Part2);
+
 Console.Read();
