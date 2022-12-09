@@ -46,4 +46,11 @@ day8.Calculate();
 Console.WriteLine("Day 8 P1: " + day8.Part1);
 Console.WriteLine("Day 8 P2: " + day8.Part2);
 
+var day9 = new Day9(Input.Day9);
+day9.Read();
+day9.Calculate();
+Console.WriteLine("Day 9 P1: " + day9.Part1);
+Console.WriteLine("Day 9 P2: " + day9.Part2);
+
+
 Console.Read();
