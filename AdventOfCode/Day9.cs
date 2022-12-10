@@ -2,13 +2,12 @@
 
 namespace AdventOfCode;
 
-public class Day9
+public class Day9 : BaseDay
 {
-    public Day9(string input) => this.Input = input;
+    public Day9(string input) : base(input, nameof(Day9)) {}
 
-    public string Input { get; }
-    public long Part1 => VisitedFields.Count;
-    public long Part2 => VisitedFieldsPart2.Count;
+    public override long Part1 => VisitedFields.Count;
+    public override long Part2 => VisitedFieldsPart2.Count;
 
     public List<Command> Commands = new();
 
@@ -18,7 +17,7 @@ public class Day9
     public ISet<Field> VisitedFields { get; set; } = new HashSet<Field>() { new(0,0)};
     public ISet<Field> VisitedFieldsPart2 { get; set; } = new HashSet<Field>() { new(0,0)};
 
-    public void Read()
+    public override void Read()
     {
         foreach (var line in Input.Split(new string[] { Environment.NewLine }, StringSplitOptions.None))
         {
@@ -50,7 +49,7 @@ public class Day9
         _ => throw new UnreachableException()
     };
 
-    public void Calculate()
+    public override void Calculate()
     {
         foreach (var cmd in Commands)
         {
