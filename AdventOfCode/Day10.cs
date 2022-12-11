@@ -14,10 +14,10 @@ public partial class Day10 : BaseDay
     private const string DarkPixel = ".";
     public string[,] Display = new string[6,41];
 
-    public override long Part1 => ValuesOfCycle[20] + ValuesOfCycle[60] + ValuesOfCycle[100] 
+    public long Part1 => ValuesOfCycle[20] + ValuesOfCycle[60] + ValuesOfCycle[100] 
         + ValuesOfCycle[140] + ValuesOfCycle[180] + ValuesOfCycle[220];
 
-    public override long Part2 => 0;
+    public long Part2 => 0;
 
     public Dictionary<int, int> ValuesOfX { get; private set; } = new();
     public Dictionary<int, int> ValuesOfCycle { get; private set; } = new();
@@ -80,6 +80,12 @@ public partial class Day10 : BaseDay
                 sb.Append(Display[index, col]);
             }
         return sb.ToString();
+    }
+
+    public override void PrintResult()
+    {
+        Console.WriteLine($"{Day} Part1: {Part1}");
+        Console.WriteLine($"{Day} Part2: {Part2}");
     }
 }
 

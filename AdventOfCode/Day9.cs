@@ -6,8 +6,8 @@ public class Day9 : BaseDay
 {
     public Day9(string input) : base(input, nameof(Day9)) {}
 
-    public override long Part1 => VisitedFields.Count;
-    public override long Part2 => VisitedFieldsPart2.Count;
+    public long Part1 => VisitedFields.Count;
+    public long Part2 => VisitedFieldsPart2.Count;
 
     public List<Command> Commands = new();
 
@@ -105,6 +105,12 @@ public class Day9 : BaseDay
             }
             Console.WriteLine();
         }
+    }
+
+    public override void PrintResult()
+    {
+        Console.WriteLine($"{Day} Part1: {Part1}");
+        Console.WriteLine($"{Day} Part2: {Part2}");
     }
 }
 

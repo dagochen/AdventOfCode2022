@@ -54,4 +54,15 @@ day.PrintResult();
 day = new Day10(Input.Day10);
 day.Read();
 day.PrintResult();
+
+Day11 day11 = new Day11(Input.Day11);
+day11.Read();
+day11.Calculate(20, true);
+day11.PrintResult();
+
+Day11 day11P2 = new Day11(Input.Day11);
+day11P2.Read();
+day11P2.Calculate(10000, false);
+day11P2.PrintResult();
+
 Console.Read();
