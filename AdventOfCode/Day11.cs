@@ -7,13 +7,13 @@ public partial class Day11
 {
     public Day11(string input) => this.Input = input;
 
-    public ulong Part1 { get; set; }
-    public ulong Part2 { get; set; }
+    public long Part1 { get; set; }
+    public long Part2 { get; set; }
 
     public List<Monkey> Monkeys { get; private set; } = new List<Monkey>();
     public string Input { get; }
 
-    public ulong Divisor { get; set; } = 1;
+    public long Divisor { get; set; } = 1;
 
     public void Read()
     {
@@ -21,7 +21,7 @@ public partial class Day11
         foreach (var line in Input.Split(new string[] { Environment.NewLine }, StringSplitOptions.TrimEntries))
         {
             if (line.StartsWith("Monkey"))
-                monkey = new Monkey(ulong.Parse(line.Split(" ")[1].Substring(0,1)));
+                monkey = new Monkey(int.Parse(line.Split(" ")[1].Substring(0,1)));
 
             if (line.StartsWith("Starting items:"))
             {
@@ -29,7 +29,7 @@ public partial class Day11
                 var items = itemsString.Split(",");
                 foreach (var item in items)
                 {
-                    monkey.Items.Add(ulong.Parse(item));
+                    monkey.Items.Add(long.Parse(item));
                 }
             }
             if( line.StartsWith("Operation"))
@@ -42,29 +42,29 @@ public partial class Day11
                 }
                 else if (operationString.StartsWith("+"))
                 {
-                    var amount = ulong.Parse(operationString.Split(" ")[1]);
+                    var amount = long.Parse(operationString.Split(" ")[1]);
                     monkey.Operation = (x) => x + amount;
                 }
                 else if (operationString.StartsWith("*"))
                 {
-                    var amount = ulong.Parse(operationString.Split(" ")[1]);
+                    var amount = long.Parse(operationString.Split(" ")[1]);
                     monkey.Operation = (x) => x * amount;
                 }
             }
             if (line.StartsWith("Test"))
             {
-                var divisor = ulong.Parse(line.Replace("Test: divisible by ", ""));
+                var divisor = long.Parse(line.Replace("Test: divisible by ", ""));
                 monkey.Test = (x) => x % divisor == 0;
                 this.Divisor = this.Divisor * divisor;
             }
             if (line.StartsWith("If true"))
             {
-                var targetTrue = ulong.Parse(line.Replace("If true: throw to monkey ", ""));
+                var targetTrue = int.Parse(line.Replace("If true: throw to monkey ", ""));
                 monkey.ThrowToWhenTrue = targetTrue;
             }
             if (line.StartsWith("If false"))
             {
-                var targetfalse = ulong.Parse(line.Replace("If false: throw to monkey ", ""));
+                var targetfalse = int.Parse(line.Replace("If false: throw to monkey ", ""));
                 monkey.ThrowToWhenFalse = targetfalse;
             }
             if (string.IsNullOrEmpty(line))
@@ -94,7 +94,7 @@ public partial class Day11
             monkey.InspectItems(this.Divisor, withDivision);
             foreach (var moveItem in monkey.MoveItemList)
             {
-                (ulong item, ulong monk) = moveItem;
+                (long item, int monk) = moveItem;
                 Monkeys.First(m => m.Id == monk).Items.Add(item);
             }
             monkey.MoveItemList.Clear();
@@ -110,23 +110,23 @@ public partial class Day11
 
 public class Monkey
 {
-    public Monkey(ulong id)
+    public Monkey(int id)
     {
         this.Id = id;
     }
-    public ulong Id { get; set; }
-    public List<ulong> Items { get; set; } = new List<ulong>();
+    public int Id { get; set; }
+    public List<long> Items { get; set; } = new List<long>();
 
-    public Func<ulong, ulong> Operation { get; set; }
+    public Func<long, long> Operation { get; set; }
 
-    public Func<ulong, bool> Test { get; set; }
+    public Func<long, bool> Test { get; set; }
 
-    public ulong ThrowToWhenTrue { get; set; }
-    public ulong ThrowToWhenFalse { get; set; }
-    public List<(ulong, ulong)> MoveItemList { get; private set; } = new();
+    public int ThrowToWhenTrue { get; set; }
+    public int ThrowToWhenFalse { get; set; }
+    public List<(long, int)> MoveItemList { get; private set; } = new();
 
-    public ulong InspectedItemsCount = 0;
-    internal void InspectItems(ulong divisor, bool withDivision = false)
+    public long InspectedItemsCount = 0;
+    internal void InspectItems(long divisor, bool withDivision = false)
     {
         foreach (var item in Items)
         {

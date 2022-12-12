@@ -17,12 +17,12 @@ namespace AdventOfCode.Test
         public void TestPart1()
         {
             Day.Calculate(20, true);
-            Day.Monkeys[0].InspectedItemsCount.ShouldBe(101ul);
-            Day.Monkeys[1].InspectedItemsCount.ShouldBe(95ul);
-            Day.Monkeys[2].InspectedItemsCount.ShouldBe(7ul);
-            Day.Monkeys[3].InspectedItemsCount.ShouldBe(105ul);
+            Day.Monkeys[0].InspectedItemsCount.ShouldBe(101);
+            Day.Monkeys[1].InspectedItemsCount.ShouldBe(95);
+            Day.Monkeys[2].InspectedItemsCount.ShouldBe(7);
+            Day.Monkeys[3].InspectedItemsCount.ShouldBe(105);
 
-            Day.Part1.ShouldBe(10605ul);
+            Day.Part1.ShouldBe(10605);
         }
 
         [Fact] public void TestPart1After1Round() 
@@ -30,17 +30,17 @@ namespace AdventOfCode.Test
             Day.StartRound(true);
             Day.Monkeys.Count.ShouldBe(4);
 
-            Day.Monkeys[0].Items.ShouldContain(20ul);
-            Day.Monkeys[0].Items.ShouldContain(23ul);
-            Day.Monkeys[0].Items.ShouldContain(27ul);
-            Day.Monkeys[0].Items.ShouldContain(26ul);
+            Day.Monkeys[0].Items.ShouldContain(20);
+            Day.Monkeys[0].Items.ShouldContain(23);
+            Day.Monkeys[0].Items.ShouldContain(27);
+            Day.Monkeys[0].Items.ShouldContain(26);
 
-            Day.Monkeys[1].Items.ShouldContain(2080ul);
-            Day.Monkeys[1].Items.ShouldContain(25ul);
-            Day.Monkeys[1].Items.ShouldContain(167ul);
-            Day.Monkeys[1].Items.ShouldContain(207ul);
-            Day.Monkeys[1].Items.ShouldContain(401ul);
-            Day.Monkeys[1].Items.ShouldContain(1046ul);
+            Day.Monkeys[1].Items.ShouldContain(2080);
+            Day.Monkeys[1].Items.ShouldContain(25);
+            Day.Monkeys[1].Items.ShouldContain(167);
+            Day.Monkeys[1].Items.ShouldContain(207);
+            Day.Monkeys[1].Items.ShouldContain(401);
+            Day.Monkeys[1].Items.ShouldContain(1046);
 
             Day.Monkeys[2].Items.ShouldBeEmpty();
             Day.Monkeys[3].Items.ShouldBeEmpty();
@@ -60,7 +60,7 @@ namespace AdventOfCode.Test
         [InlineData(8000, 41728, 38268, 1553, 41606, 1736135168)]
         [InlineData(9000, 46945, 43051, 1746, 46807, 2197354615)]
         [InlineData(10000, 52166, 47830, 1938, 52013, 2713310158)]
-        public void TestPart2(int rounds, ulong monkey0, ulong monkey1, ulong monkey2, ulong monkey3, ulong monkeybusiness)
+        public void TestPart2(int rounds, long monkey0, long monkey1, long monkey2, long monkey3, long monkeybusiness)
         {
             Day.Calculate(rounds);
             Day.Monkeys[0].InspectedItemsCount.ShouldBe(monkey0);

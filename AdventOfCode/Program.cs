@@ -65,4 +65,9 @@ day11P2.Read();
 day11P2.Calculate(10000, false);
 day11P2.PrintResult();
 
+Day12 day12 = new Day12(Input.Day12);
+day12.Read();
+day12.Calculate();
+day12.PrintResult();
+
 Console.Read();
